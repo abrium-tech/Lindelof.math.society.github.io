@@ -4,7 +4,7 @@
 Math Club Home
 ---
 
-# Welcome to the Lindelof Math Club
+# Welcome to the Lindelöf Math Club
 
 We explore the abstraction of analysis, linear algebra, group theory and all of mathematics.
 
