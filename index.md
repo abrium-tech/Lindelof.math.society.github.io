@@ -1,3 +1,5 @@
+[Home](./) | [About Us](about.html) | [Events](events.html) | [Resources](resources.html)
+---
 ---
 layout: default
 title: Math Club Home
