@@ -1,8 +1,7 @@
 [Home](./) | [About Us](about.html) | [Events](events.html) | [Resources](resources.html)
 ---
 ---
-layout: default
-title: Math Club Home
+Math Club Home
 ---
 
 # Welcome to the Lindelof Math Club
