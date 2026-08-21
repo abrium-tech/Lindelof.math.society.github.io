@@ -1,3 +1,7 @@
+<div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 30px;">
+  <img src="./assets/images/club-logo.jpeg" alt="Lindelöf Math Society Logo" width="150"/>
+  <img src="./assets/images/institute-logo.jpeg" alt="Institute Logo" width="150"/>
+</div>
 ---
 layout: default
 ---
