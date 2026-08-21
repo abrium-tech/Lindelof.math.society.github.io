@@ -14,7 +14,7 @@ title: Events & Seminars
 
 ### 2. The History & Impact of Science
 *   **Focus:** The intersection of scientific temperament, society, and history. 
-*   **Format:** Monthly Discussion Forum. We review the mathematical legacy, philosophies, and societal impact of monumental figures (such as the life and work of Abdus Salam).
+*   **Format:** Monthly Discussion Forum. We review the mathematical legacy, philosophies, and societal impact of monumental figures (such as the life and work of Srinivasa Ramanujan, Bhargava, Aryabhata and many more).
 
 ### 3. Problem of the Week
 *   **Focus:** Collaborative problem solving.
