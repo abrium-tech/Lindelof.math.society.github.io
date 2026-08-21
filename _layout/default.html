@@ -1,6 +1,105 @@
-{{ page.title }}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lindelöf Math Society</title>
     
+    <!-- MathJax for rendering pure mathematics equations -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
-  
-  
-    {{ content }}
+    <!-- Custom CSS for a beautiful, professional aesthetic -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        /* A subtle, professional animated gradient background */
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      
+      @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      /* The clean white card for your content */
+      .container {
+        background-color: #ffffff;
+        width: 80%;
+        max-width: 900px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        padding: 50px;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      }
+      
+      header {
+        text-align: center;
+        border-bottom: 2px solid #eaeaea;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+      }
+      
+      header h1 {
+        color: #2c5364;
+        font-size: 2.8em;
+        margin: 0;
+        letter-spacing: 1px;
+      }
+      
+      nav {
+        margin-top: 20px;
+      }
+      
+      nav a {
+        color: #203a43;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        font-size: 1.1em;
+        transition: color 0.3s;
+      }
+      
+      nav a:hover {
+        color: #5b8a9e;
+      }
+      
+      .content {
+        line-height: 1.7;
+        font-size: 1.15em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Lindelöf Math Society</h1>
+        <nav>
+          <a href="./">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="events.html">Events</a>
+          <a href="resources.html">Resources</a>
+        </nav>
+      </header>
+      <div class="content">
+        {{ content }}
+      </div>
+    </div>
+  </body>
+</html>
