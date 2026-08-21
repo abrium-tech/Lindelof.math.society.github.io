@@ -21,6 +21,10 @@ layout: default
   <img src="./assets/images/club-logo.jpeg" alt="Lindelöf Math Society Logo" style="max-width: 250px; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.1);"/>
 </div>
 
+[Home](./) | [About Us](about.html) | [Events](events.html) 
+
+<hr>
+
 <!-- 4. Club Content -->
 We explore the abstraction of analysis, linear algebra, group theory, and all of mathematics.
 
