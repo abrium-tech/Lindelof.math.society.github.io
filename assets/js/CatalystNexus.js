@@ -1,5 +1,5 @@
 // Paste your exact published Google Sheets CSV link here
-const GOOGLE_SHEET_CSV_URL = "https://google.com";
+const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1sROfUjNrTwkYWTX3PYG2-tiBrETwtxnXiSLptRtXKjg/edit?gid=0#gid=0";
 
 // Master memory storage array to hold clean dataset arrays locally for instant live sorting
 let masterAlumniList = [];
