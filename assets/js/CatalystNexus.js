@@ -1,68 +1,82 @@
-// Paste your exact published Google Sheets CSV link here
-const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1sROfUjNrTwkYWTX3PYG2-tiBrETwtxnXiSLptRtXKjg/edit?gid=0#gid=0";
-
-// Master memory storage array to hold clean dataset arrays locally for instant live sorting
-let masterAlumniList = [];
-
-async function loadAlumniData() {
-  try {
-    const response = await fetch(GOOGLE_SHEET_CSV_URL);
-    const csvText = await response.text();
-    
-    // Split the raw dataset cleanly by entry lines
-    const rows = csvText.split("\n").map(row => row.split(","));
-    
-    const gridContainer = document.getElementById("alumni-grid");
-    if (!gridContainer) return;
-    
-    // Wipe local cache array clean
-    masterAlumniList = [];
-    const batchSet = new Set();
-
-    // Loop through records (Skipping Row 0 headers)
-    for (let i = 1; i < rows.length; i++) {
-      const columns = rows[i];
-      if (!columns || columns.length < 2) continue;
-
-      // Helper function to strip string quotes safely
-      const clean = (val) => (val ? val.replace(/"/g, "").trim() : "");
-
-      // Data column positional layout mapping index list
-      const alumItem = {
-        name: clean(columns[1]),
-        role: clean(columns[2]),
-        company: clean(columns[3]),
-        gradYear: clean(columns[4]),
-        majorSubject: clean(columns[5]),
-        minorSubject: clean(columns[6]),
-        quantaBatch: clean(columns[7]),
-        bio: clean(columns[8]),
-        linkedin: clean(columns[9])
-      };
-
-      masterAlumniList.push(alumItem);
-      if (alumItem.quantaBatch) {
-        batchSet.add(alumItem.quantaBatch);
-      }
-    }
-
-    // Initialize UI Filters and Count Badges
-    updateCountDisplay(masterAlumniList.length);
-    populateBatchFilterDropdown(Array.from(batchSet).sort((a, b) => a - b));
-    
-    // Render the initial complete record matrix layout
-    renderAlumniGrid(masterAlumniList);
-
-  } catch (error) {
-    console.error("Catalyst Nexus sync processing block issue:", error);
-    const gridContainer = document.getElementById("alumni-grid");
-    if (gridContainer) {
-      gridContainer.innerHTML = "<p style='grid-column:1/-1; text-align:center; color:#ef4444;'>Catalyst Sync Failure. Please reload the connection profile list.</p>";
-    }
+// Hardcoded array list for instant local testing (Bypasses Google Sheets)
+const masterAlumniList = [
+  {
+    name: "Alex Rivera",
+    role: "Software Engineer",
+    company: "Google",
+    gradYear: "2024",
+    majorSubject: "Computer Science",
+    minorSubject: "Mathematics",
+    quantaBatch: "1",
+    bio: "Backend cloud infrastructure developer. Loves helping students prep for technical interviews.",
+    linkedin: "https://linkedin.com"
+  },
+  {
+    name: "Sarah Chen",
+    role: "UI/UX Designer",
+    company: "Stripe",
+    gradYear: "2023",
+    majorSubject: "Human-Computer Interaction",
+    minorSubject: "Cognitive Science",
+    quantaBatch: "1",
+    bio: "Mobile interaction layouts specialist. Passionate about building accessible experiences.",
+    linkedin: "https://linkedin.com"
+  },
+  {
+    name: "David Kim",
+    role: "Data Scientist",
+    company: "Netflix",
+    gradYear: "2025",
+    majorSubject: "Data Science",
+    minorSubject: "Statistics",
+    quantaBatch: "2",
+    bio: "Recommendation systems specialist. Ask me anything about machine learning models.",
+    linkedin: "https://linkedin.com"
+  },
+  {
+    name: "Elena Rostova",
+    role: "Cloud Architect",
+    company: "AWS",
+    gradYear: "2025",
+    majorSubject: "Information Technology",
+    minorSubject: "Cybersecurity",
+    quantaBatch: "2",
+    bio: "Enterprise multi-region setups analyst. Expert in serverless infrastructure configurations.",
+    linkedin: "" // Left blank to test empty link handling
+  },
+  {
+    name: "Marcus Vance",
+    role: "Product Manager",
+    company: "Microsoft",
+    gradYear: "2026",
+    majorSubject: "Computer Engineering",
+    minorSubject: "Business Administration",
+    quantaBatch: "3",
+    bio: "Bridging engineering and business strategy. Always open to reviewing resumes.",
+    linkedin: "https://linkedin.com"
   }
+];
+
+function loadLocalAlumniData() {
+  const gridContainer = document.getElementById("alumni-grid");
+  if (!gridContainer) return;
+  
+  // Clear the loading message
+  gridContainer.innerHTML = "";
+
+  const batchSet = new Set();
+  masterAlumniList.forEach(item => {
+    if (item.quantaBatch) batchSet.add(item.quantaBatch);
+  });
+
+  // Initialize UI Filters and Count Badges
+  updateCountDisplay(masterAlumniList.length);
+  populateBatchFilterDropdown(Array.from(batchSet).sort((a, b) => a - b));
+  
+  // Render the data blocks
+  renderAlumniGrid(masterAlumniList);
 }
 
-// Sub-routine: Build the visual HTML loop blocks
 function renderAlumniGrid(dataList) {
   const gridContainer = document.getElementById("alumni-grid");
   gridContainer.innerHTML = "";
@@ -98,16 +112,14 @@ function renderAlumniGrid(dataList) {
   });
 }
 
-// Sub-routine: Handle calculations for statistics card tracker
 function updateCountDisplay(num) {
   const countBadge = document.getElementById("catalyst-count");
   if (countBadge) countBadge.innerText = `Total Network Records: ${num}`;
 }
 
-// Sub-routine: Build dynamic options inside selection toolbar item list
 function populateBatchFilterDropdown(batches) {
   const dropdown = document.getElementById("batch-filter");
-  if (!dropdown || dropdown.options.length > 1) return; // Prevent duplications
+  if (!dropdown || dropdown.options.length > 1) return;
 
   batches.forEach(batch => {
     const opt = document.createElement("option");
@@ -116,7 +128,6 @@ function populateBatchFilterDropdown(batches) {
     dropdown.appendChild(opt);
   });
 
-  // Attach execution event tracking listener routine
   dropdown.addEventListener("change", (e) => {
     const selected = e.target.value;
     if (selected === "all") {
@@ -133,6 +144,6 @@ function populateBatchFilterDropdown(batches) {
 // Global initialization entry point logic hook
 window.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("alumni-grid")) {
-    loadAlumniData();
+    loadLocalAlumniData();
   }
 });
